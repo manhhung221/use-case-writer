@@ -68,23 +68,92 @@ The skill follows the **progressive disclosure** pattern: only `SKILL.md` is alw
 
 ## Installation
 
-### Option 1: Upload to a Claude Project (recommended)
+### Option 1: Claude Code CLI — User-level skill (recommended)
+
+Install once and the skill is available across **all your projects**.
+
+**Step 1 — Clone the repository**
+
+```bash
+# Mac / Linux
+git clone https://github.com/ba-zone/ba-zone-use-case-writer.git ~/.claude/skills/ba-zone-use-case-writer
+
+# Windows (PowerShell)
+git clone https://github.com/ba-zone/ba-zone-use-case-writer.git "$env:USERPROFILE\.claude\skills\ba-zone-use-case-writer"
+```
+
+**Step 2 — Verify the structure**
+
+After cloning, the skills directory should look like this:
+
+```
+~/.claude/skills/                          # Mac/Linux
+%USERPROFILE%\.claude\skills\             # Windows
+└── ba-zone-use-case-writer/
+    ├── SKILL.md                          ← main entry point (loaded by Claude Code)
+    ├── references/
+    │   ├── template-guide.md
+    │   ├── writing-style.md
+    │   ├── quality-checklist.md
+    │   └── examples-edtech.md
+    └── assets/
+        └── uc-template.md
+```
+
+**Step 3 — Use the skill in Claude Code**
+
+Open Claude Code CLI (or VS Code / JetBrains extension) and type:
+
+```
+/use-case-writer
+```
+
+Or just describe what you need — Claude Code will detect and activate the skill automatically based on trigger phrases.
+
+---
+
+### Option 2: Claude Code CLI — Project-level skill
+
+Install inside a specific project so only that project's Claude Code sessions load it.
+
+```bash
+# Mac / Linux — run from your project root
+git clone https://github.com/ba-zone/ba-zone-use-case-writer.git .claude/skills/ba-zone-use-case-writer
+
+# Windows (PowerShell) — run from your project root
+git clone https://github.com/ba-zone/ba-zone-use-case-writer.git .claude\skills\ba-zone-use-case-writer
+```
+
+The `.claude/skills/` directory sits alongside your project's `.claude/settings.json`. Claude Code picks it up automatically on next launch within that project.
+
+---
+
+### Option 3: Upload to a Claude Project (claude.ai web)
+
+For users who work on [claude.ai](https://claude.ai) instead of the CLI:
 
 1. Download or clone this repository
 2. In [claude.ai](https://claude.ai), go to **Projects → Create new project**
-3. Upload the entire `ba-zone-use-case-writer/` folder to the project knowledge base
+3. Upload all files (drag-and-drop the entire folder into the project knowledge base)
 4. Start chatting — the skill activates automatically on relevant prompts
 
-### Option 2: Use as a prompt template
+---
 
-Paste the contents of `SKILL.md` at the start of a chat and tell Claude:
+### Option 4: Use as a one-shot prompt template
+
+Paste the contents of `SKILL.md` at the start of any Claude chat and say:
 > "Follow this workflow whenever I ask you to write a use case."
 
-### Option 3: Deploy to /mnt/skills/user/
+---
 
-If your environment supports the skills mount:
-1. Copy the folder to `/mnt/skills/user/ba-zone-use-case-writer/`
-2. Claude will detect and trigger the skill automatically
+### Skills directory paths — quick reference
+
+| Platform | User-level (global) | Project-level |
+|----------|---------------------|---------------|
+| Mac / Linux | `~/.claude/skills/` | `.claude/skills/` (project root) |
+| Windows | `%USERPROFILE%\.claude\skills\` | `.claude\skills\` (project root) |
+
+> **Tip (Windows):** Open the skills folder quickly with `explorer "$env:USERPROFILE\.claude\skills"` in PowerShell.
 
 ---
 
