@@ -1,0 +1,15 @@
+{
+  "name": "ba-zone-use-case-writer",
+  "owner": {
+    "name": "manhhung221",
+    "url": "https://github.com/manhhung221"
+  },
+  "plugins": [
+    {
+      "name": "ba-zone-use-case-writer",
+      "source": "./",
+      "description": "Generate Use Case specifications in English Markdown following the IT BA standard 13-field template (Karl Wiegers / IIBA).",
+      "version": "1.0.0"
+    }
+  ]
+}
